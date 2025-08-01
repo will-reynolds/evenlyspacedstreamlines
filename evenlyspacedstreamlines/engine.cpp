@@ -39,7 +39,7 @@ StreamlineEngine::StreamlineEngine()
 {
     max_threads = 0;
     current_streamline = NULL;
-    thread_best_streamline = NULL, 
+    thread_best_streamline = NULL;
     best_streamline = NULL;
     best_length = NULL;
     idx_seed = NULL;
@@ -68,18 +68,29 @@ void StreamlineEngine::initialize(int nv_, int nt_, double* ver_, int* tri_,
 //-----------------------------------------------------------------------------
 StreamlineEngine::~StreamlineEngine()
 {
-    for (int i=0;i<max_threads;i++) {
-        delete current_streamline[CACHE_LINE*i];
-        delete thread_best_streamline[CACHE_LINE*i];
+    // Only clean up if arrays were allocated
+    if (current_streamline) {
+        for (int i=0;i<max_threads;i++) {
+            delete current_streamline[CACHE_LINE*i];
+            delete thread_best_streamline[CACHE_LINE*i];
+        }
+        delete [] current_streamline;
+        delete [] thread_best_streamline;
+        current_streamline = NULL;
+        thread_best_streamline = NULL;
     }
-    delete [] current_streamline;
-    delete [] thread_best_streamline;
     delete [] best_length;
     delete [] idx_seed;
     delete [] s_seed;
     delete [] rnd_stream;
+    best_length = NULL;
+    idx_seed = NULL;
+    s_seed = NULL;
+    rnd_stream = NULL;
+    
     for (unsigned int i=0;i<collection.size();i++) 
         delete collection[i];
+    collection.clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -209,6 +220,12 @@ void StreamlineEngine::setup_streamline_storage(int maxlen)
     current_streamline = new SegmentDeque* [nblock];
     thread_best_streamline = new SegmentDeque* [nblock];
     best_length = new double [nblock];
+
+    // Initialize all pointers to NULL for exception safety
+    for (int i=0;i<nblock;i++) {
+        current_streamline[i] = NULL;
+        thread_best_streamline[i] = NULL;
+    }
 
     for (int i=0;i<max_threads;i++) {
         current_streamline[CACHE_LINE*i] = new SegmentDeque(maxlen);
