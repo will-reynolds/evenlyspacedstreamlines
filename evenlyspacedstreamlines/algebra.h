@@ -18,6 +18,5 @@ inline void vnormalize(double* x);
 inline void vrmcomp(double* x, double* n);
 void solve2x2(double a11, double a12, double a21, double a22, 
               double b1, double b2, double& x1, double& x2);
-void vprint(double *x);
 
 #endif

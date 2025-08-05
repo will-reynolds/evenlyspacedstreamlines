@@ -90,7 +90,7 @@ int TriangularMesh::get_triangle_connections(int idx, int* idx_adj,
         int i4=0; // i4 = other vertex in triangle i
 
         // s' = a * s + b
-        if (f == 0) { // commoen edge = origin-base
+        if (f == 0) { // common edge = origin-base
             // s = 0 -> s' = s0; s = 1 -> s' = s1
             b[f] = s0;
             a[f] = s1 - s0;
@@ -98,7 +98,7 @@ int TriangularMesh::get_triangle_connections(int idx, int* idx_adj,
             i2 = face[idx].idx_base;
             i3 = face[idx].idx_apex;
         }
-        if (f == 1) { // commoen edge = origin-apex
+        if (f == 1) { // common edge = origin-apex
             // s = 0 -> s' = s0; s = s_crit -> s' = sc
             b[f] = s0;
             a[f] = (sc - s0)/s_crit;

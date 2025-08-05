@@ -16,7 +16,5 @@ with open('out', 'rt') as file:
         x = np.fromstring(line, sep=' ').reshape((-1, 3))
         i += 1
         plt.plot(x[:, 0], x[:, 1], '-')
-        #plt.plot(x[0, 0]+cx, x[0, 1]+cy, c=(0.7,)*3)
-        #plt.plot(x[-1, 0]+cx, x[-1, 1]+cy,  c=(0.7,)*3)
 plt.axis('equal')
 plt.show()

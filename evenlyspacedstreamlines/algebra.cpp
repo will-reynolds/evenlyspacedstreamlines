@@ -105,12 +105,6 @@ inline void vrmcomp(double* x, double* n)
 }
 
 //-----------------------------------------------------------------------------
-void vprint(double *x)
-{
-    printf("%.4f %.4f %.4f\n", x[0], x[1], x[2]);
-}
-
-//-----------------------------------------------------------------------------
 void solve2x2(double a11, double a12, double a21, double a22, 
               double b1, double b2, double& x1, double& x2)
 {

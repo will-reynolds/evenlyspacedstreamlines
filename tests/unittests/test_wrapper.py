@@ -25,8 +25,3 @@ lines, faces, infos = evenly_spaced_streamlines(
 assert len(lines) == 0
 
 
-# import matplotlib.pyplot as plt
-# plt.triplot(ver[:, 0], ver[:, 1], tri, c=(0.8,)*3)
-# for line in lines:
-#     plt.plot(line[:, 0], line[:, 1], '-')
-# plt.show()

@@ -58,7 +58,6 @@ class Triangle:
             plt.plot(x[:, 0], x[:, 1], ls='--', c=(0.8, 0.8, 0.8))
             G = (A+B+C)/3
             plt.plot([G[0]-orient[0], G[0]+orient[0]], [G[1]-orient[1], G[1]+orient[1]])
-            #plt.plot([G[0]-orthogonal[0], G[0]+orthogonal[0]], [G[1]-orthogonal[1], G[1]+orthogonal[1]])
             plt.text(A[0], A[1], 'A')
             plt.text(B[0], B[1], 'B')
             plt.text(C[0], C[1], 'C')
